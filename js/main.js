@@ -1,48 +1,46 @@
-window.onload = function() {
-  // Select all buttons
+window.onload = function () {
   var buttons = document.getElementsByTagName('span'),
-  // Select the result-field
-  result = document.querySelectorAll('.result p')[0],
-  // Select the clearAll-button
-  clear = document.getElementsByClassName('clear')[0]
+    result = document.querySelectorAll('.result p')[0],
+    clear = document.getElementsByClassName('clear')[0];
 
+  // Loop over all the buttons to add onclick event
+  // If the inside of button is not '=' we will
+  // add the onclick function: addValue(i)
+  // if it is '=' add the onclick function: calculatei)
   for (var i = 0; i < buttons.length; i += 1) {
-    //  This loops through all the buttons to add onclick-event
-    // if the inside of that button is not '=' --> we will
-    // add the conclick-function: addvalue(i).
-    // if it is '=' --> add the onclick-function: calculate(i)
-
     if (buttons[i].innerHTML === '=') {
-      buttons[i].addEventListener("click", calculate(i))
+      buttons[i].addEventListener("click", calculate(i));
     } else {
-      buttons[i].addEventListener("click", addValue(i))
-    }
-  }
-
-  function addValue(i) {
-    // we need to replace the '÷' and the 'x' symbols,
-    // because js cant calculate with it. the if-statement replaces
-    // those symbols with the correct symbol
-
-    if (butttons[i].innerHTML === '÷') {
-      result.innerHTML += '/';
-    } else if (buttons[i].innerHTML === 'x') {
-      result.innerHTML += '*';
-    } else {
-      result.innerHTML += buttons[i].innerHTML;
-    }
-  }
-
-  function calculate(i) {
-    return function () {
-      result.innerHTML = eval(result.innerHTML)
+      buttons[i].addEventListener("click", addValue(i));
     }
   }
 
   clear.onclick = function () {
     result.innerHTML = '';
+  };
+
+  function addValue(i) {
+    return function () {
+      if (buttons[i].innerHTML === '÷') {
+        result.innerHTML  += '/';
+      } else if (buttons[i].innerHTML === 'x') {
+        result.innerHTML  += '*';
+      } else {
+        result.innerHTML += buttons[i].innerHTML;
+      }
+    };
   }
 
-}
+  function calculate(i) {
+    return function () {
+      var final_res = result.innerHTML;
+
+      var bugFix = final_res.replace(/\d+/g, function(numb){
+        return parseInt(numb, 10);
+      });
 
 
+      result.innerHTML = eval(bugFix);
+    };
+  }
+};
