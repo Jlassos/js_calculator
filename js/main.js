@@ -14,13 +14,14 @@ window.onload = function () {
       buttons[i].addEventListener("click", addValue(i));
     }
   }
-
+  // simple clear
   clear.onclick = function () {
     result.innerHTML = '';
   };
 
   function addValue(i) {
     return function () {
+      // replace operator symbols to proper ones
       if (buttons[i].innerHTML === '÷') {
         result.innerHTML  += '/';
       } else if (buttons[i].innerHTML === 'x') {
