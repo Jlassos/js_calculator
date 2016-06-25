@@ -13,7 +13,7 @@ html, body {
   width: 450px;
   height: 270px;;
   margin: 50px auto 0 auto;
-  background-color: #3498db;
+  background-color: #333333;
   padding: 10px 10px 260px 10px;
   border-radius: 5px;
   border-bottom: 5px solid #42729B;
@@ -41,7 +41,7 @@ html, body {
   line-height: 40px;
   cursor: pointer;
   background-color: #ecf0f1;
-  color: #2c3e50;
+  color: grey;
   margin: 5px;
 }
 
